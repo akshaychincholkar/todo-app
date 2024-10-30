@@ -8,26 +8,55 @@ function App() {
   const [tasks,setTasks] = useState([])
   const [taskInput,setTaskInput] = useState('')
 
-  useEffect(() => {
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
+  // useEffect(() => {
+  //     localStorage.setItem('tasks', JSON.stringify(tasks));
+  // }, [tasks]);
 
-  const handleAddTask = (value) =>{
-    setTasks([...tasks,{text:{value},isComplete: false}])
-    alert(tasks)
+  const handleAddTask = () =>{
+    setTasks([...tasks,{text: taskInput ,isComplete: false}]) // No brackets are present
+    setTaskInput("");
   }
   const handleInput = (event)=>{
     setTaskInput(event.target.value);
   }
+  const toggleTask = (index) =>{
+    const updatedTasks = tasks.map((task,l_index)=>(
+       l_index === index ? {...task, isComplete: !task.isComplete } : task
+    ));
+    setTasks(updatedTasks);
+    // alert(index)
+  }
+  const styles = {
+    strikethrough: {
+        textDecoration: 'line-through',
+    },
+    normal: {
+        textDecoration: 'none',
+    },
+};
+const deleteTask = (index) =>{
+  const updatedTasks = tasks.filter((task,i)=>
+    i !== index
+  );
+  setTasks(updatedTasks);
+}
   return (
     <div className="App">
-        Let's Create the todo application!
-        <br/><input type='text' placeholder='Enter task!' onChange={handleInput}/>
+        TODO Application!
+        <br/><input type='text' placeholder='Enter task!' onChange={handleInput} value={taskInput}/>
         <button onClick={handleAddTask}>Add Task</button>
         <h2>Task List</h2>
             {tasks.length > 0 ? (
-                tasks.map(task => (
-                    <div>{task.text}</div>
+                tasks.map((task,index) => (  // index is inbuilt in the json
+                    <div>
+                      <div style={task.isComplete ? styles.strikethrough : styles.normal}>{index+1}. {task.text}
+                      <button onClick={()=>{toggleTask(index)}}>{task.isComplete?"Undo":"Mark Complete"}</button>  
+                      <button onClick={()=>{deleteTask(index)}}>Delete</button>  
+                      </div>
+                      
+                    {/* <button onClick={toggleTask(index)}>{task.isComplete?"Undo":"Mark Complete"}</button> */}
+                   
+                    </div>
                 ))
             ) : (
                 <p>No tasks available</p>
