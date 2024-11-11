@@ -9,7 +9,12 @@ input {
   padding: 8px;
   margin-right: 10px;
 }
-
+.center-div {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  height: 100vh;           /* Optional: makes div fill the viewport height */
+}
 button {
   padding: 8px;
   margin-left: 5px;

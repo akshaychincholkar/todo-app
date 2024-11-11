@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import MyApp from './MyApp';
-
+import MaterialApp from './MaterialApp';
+import ResponsiveAppBar from './Header'
+import MiniDrawer from './Sidebar'
+import ColorTabs from './Tabs'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <MyApp/>
+    {/* <MyApp/> */}
+    {/* <MaterialApp/> */}
+    <ResponsiveAppBar/>
+    <MiniDrawer/>
   </React.StrictMode>
 );
 
