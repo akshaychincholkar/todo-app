@@ -7,14 +7,20 @@ import MaterialApp from './MaterialApp';
 import ResponsiveAppBar from './Header'
 import MiniDrawer from './Sidebar'
 import ColorTabs from './Tabs'
+import App from './App';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
     {/* <MyApp/> */}
     {/* <MaterialApp/> */}
-    <ResponsiveAppBar/>
-    <MiniDrawer/>
+    {/* <ResponsiveAppBar/>
+    <MiniDrawer/> */}
+      <Provider store={store}>
+    <App />
+  </Provider>
   </React.StrictMode>
 );
 
